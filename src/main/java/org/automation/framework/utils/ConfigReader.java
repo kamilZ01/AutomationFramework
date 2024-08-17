@@ -39,7 +39,7 @@ public class ConfigReader {
     }
 
     public int getNumberProperty(String key) {
-        String value = properties.getProperty(key);
+        String value = getStringProperty(key);
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
