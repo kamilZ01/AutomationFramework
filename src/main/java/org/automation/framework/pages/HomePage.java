@@ -14,6 +14,8 @@ public class HomePage {
     private WebElement logo;
     @FindBy(xpath = "//button[@id='didomi-notice-agree-button' and contains(@aria-label, 'Zaakceptuj i zamknij')]")
     private WebElement acceptCookies;
+    @FindBy(xpath = "//nav[@id='main-menu']/following-sibling::div/a[@title='Koszyk']/div")
+    private WebElement basketItemCount;
 
     public HomePage(WebDriver driver) {
         elementUtil = new ElementUtil(driver);
@@ -28,4 +30,7 @@ public class HomePage {
         elementUtil.click(acceptCookies);
     }
 
+    public int getBasketItemCount() {
+        return Integer.parseInt(elementUtil.getElementText(basketItemCount));
+    }
 }

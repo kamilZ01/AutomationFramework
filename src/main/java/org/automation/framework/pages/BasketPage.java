@@ -16,6 +16,8 @@ public class BasketPage {
     private WebElement startPrice;
     @FindBy(xpath = "//div[.//div[text()='Miesięcznie'] and contains(@class,'accordionHeader')]//span[@data-qa='BKT_TotalMonthly']")
     private WebElement monthlyPrice;
+    @FindBy(className = "logoWrap")
+    private WebElement logo;
 
     public BasketPage(WebDriver driver) {
         elementUtil = new ElementUtil(driver);
@@ -32,5 +34,9 @@ public class BasketPage {
 
     public String getMonthlyPrice() {
         return elementUtil.getElementText(monthlyPrice);
+    }
+
+    public void clickOnLogo() {
+        elementUtil.click(logo);
     }
 }

@@ -2,6 +2,7 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.automation.framework.context.ScenarioContext;
 import org.automation.framework.models.BasketSummary;
 import org.automation.framework.models.Product;
@@ -41,5 +42,11 @@ public class BasketPageSteps {
         Assertions.assertEquals(product.getMonthlyPrice(), basketSummary.getMonthlyPrice(),
                 "Monthly price from product page should match the price inside basket.");
         logger.logInfo("Monthly price [%s] is the same on both pages.", product.getMonthlyPrice());
+    }
+
+    @When("user navigates from basket to home page")
+    public void userNavigatesFromBasketToHomePage() {
+        logger.logStep("Going to homepage by clicking T-Mobile logo.");
+        basketPage.clickOnLogo();
     }
 }

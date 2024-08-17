@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.automation.framework.pages.HomePage;
@@ -35,4 +36,12 @@ public class HomePageSteps {
         homePage.clickAcceptCookies();
     }
 
+    @And("basket items count is {int}")
+    public void basketItemsCountIs(int expectedItemsCount) {
+        logger.logStep("Checking if basket items count is [%s].", expectedItemsCount);
+        int actualItemsCount = homePage.getBasketItemCount();
+        Assertions.assertEquals(expectedItemsCount, actualItemsCount,
+                "Number of items inside the basket should match the expected values.");
+        logger.logInfo("Number of items inside the basket is as expected.");
+    }
 }
