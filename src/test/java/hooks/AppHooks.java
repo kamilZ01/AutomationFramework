@@ -3,6 +3,7 @@ package hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.automation.framework.context.ScenarioContext;
 import org.automation.framework.enums.BrowserType;
 import org.automation.framework.setup.DriverManager;
 import org.automation.framework.utils.ConfigReader;
@@ -12,8 +13,13 @@ import org.openqa.selenium.WebDriver;
 
 public class AppHooks {
 
-    private WebDriver driver;
     public Scenario scenario;
+    private WebDriver driver;
+    private final ScenarioContext scenarioContext;
+
+    public AppHooks(ScenarioContext scenarioContext) {
+        this.scenarioContext = scenarioContext;
+    }
 
     @Before(order = 0)
     public void launchBrowser(Scenario scenario) {
