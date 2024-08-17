@@ -26,7 +26,7 @@ public class DevicesPageSteps {
         devicesList = devicesPage.getDevicesCount();
         logger.logInfo("Found [%s] devices on page.", devicesList.size());
         Assertions.assertEquals(expectedDevicesCount, devicesList.size(),
-                "Number of devices on the site as expected.");
+                "Number of devices on the site should match the expected values.");
     }
 
     @When("user select first element from the list")
