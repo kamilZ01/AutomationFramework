@@ -16,18 +16,31 @@ public class CustomLogger {
     }
 
     public void logInfo(String message, Object... args) {
-        String formatted = String.format(message, args);
-        appHooks.scenario.log(String.format("   %s: %s", LogType.INFO, formatted));
+        String formatted = getTypeMessage(message, LogType.INFO, args);
+        appHooks.scenario.log(formatted);
         printLog(formatted);
     }
 
     public void logStep(String message, Object... args) {
-        String formatted = String.format(message, args);
-        appHooks.scenario.log(String.format("%s (%s): %s", LogType.TEST_STEP, formatDate(ZonedDateTime.now()), formatted));
+        String formatted = getStepMessage(message, args);
+        appHooks.scenario.log(formatted);
         printLog(formatted);
     }
 
+    private String getStepMessage(String message, Object... args) {
+        return String.format("%s (%s): %s", LogType.TEST_STEP, formatDate(ZonedDateTime.now()), getLogMessage(message, args));
+    }
+
+    private String getTypeMessage(String message, LogType logType, Object... args) {
+        return String.format("  %s: %s", logType, getLogMessage(message, args));
+    }
+
+    private String getLogMessage(String message, Object... args) {
+        String formatted = String.format(message, args);
+        return String.format("  %s", formatted);
+    }
+
     private void printLog(String message) {
-        System.out.println(message);
+        System.out.printf("%s\n", message);
     }
 }
