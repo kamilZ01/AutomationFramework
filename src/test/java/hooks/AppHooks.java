@@ -19,6 +19,7 @@ public class AppHooks {
     private final ScenarioContext scenarioContext;
     private final TagCheckerUtil tagCheckerUtil = new TagCheckerUtil();
     private boolean isRestScenario;
+    private ConfigReader configReader;
 
     public AppHooks(ScenarioContext scenarioContext) {
         this.scenarioContext = scenarioContext;
@@ -29,9 +30,14 @@ public class AppHooks {
     }
 
     @Before(order = 0)
-    public void launchBrowser(Scenario scenario) {
-        ConfigReader configReader = new ConfigReader();
+    public void loadProperties() {
+        configReader = new ConfigReader();
         configReader.initProp();
+        scenarioContext.setConfigReader(configReader);
+    }
+
+    @Before(order = 1)
+    public void launchBrowser(Scenario scenario) {
         isRestScenario = tagCheckerUtil.hasTestAPITag(scenario);
         if (!isRestScenario) {
             BrowserType browser = configReader.getBrowser();
