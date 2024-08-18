@@ -1,5 +1,6 @@
 Feature: Zarządzanie ofertami telefonów bez abonamentu
 
+  @TestWeb
   Scenario: Wybranie telefonu z listy ofert
 
     Given user navigates to "https://www.t-mobile.pl/" page
