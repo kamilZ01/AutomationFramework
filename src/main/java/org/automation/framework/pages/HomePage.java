@@ -12,7 +12,7 @@ public class HomePage {
 
     @FindBy(xpath = "(//a[@id=\"back-top\"]//*[name()='svg'])[1]")
     private WebElement logo;
-    @FindBy(xpath = "//button[@id='didomi-notice-agree-button' and contains(@aria-label, 'Zaakceptuj i zamknij')]")
+    @FindBy(xpath = "//button[@id='didomi-notice-agree-button']")
     private WebElement acceptCookies;
     @FindBy(xpath = "//nav[@id='main-menu']/following-sibling::div/a[@title='Koszyk']/div")
     private WebElement basketItemCount;
