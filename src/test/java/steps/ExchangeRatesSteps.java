@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
+import org.automation.framework.context.ScenarioContext;
 import org.automation.framework.models.Rate;
 import org.automation.framework.models.RateData;
 import utils.CustomLogger;
@@ -19,13 +20,16 @@ public class ExchangeRatesSteps {
 
     private final CustomLogger logger;
     private RateData[] rateData;
+    private ScenarioContext context;
 
-    public ExchangeRatesSteps(CustomLogger logger) {
+    public ExchangeRatesSteps(CustomLogger logger, ScenarioContext context) {
         this.logger = logger;
+        this.context = context;
     }
 
-    @Given("user gets exchange rates from {string}")
-    public void userGetsExchangeRatesFrom(String url) {
+    @Given("user gets exchange rates from NBP API")
+    public void userGetsExchangeRatesFrom() {
+        String url = context.getConfigReader().getStringProperty("nbp_api_url_table_a");
         logger.logStep("Getting exchange rates from [%s].", url);
         Response response = given().
                 when().
