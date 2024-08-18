@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 
 public class AppHooks {
 
-    public Scenario scenario;
+    private Scenario scenario;
     private WebDriver driver;
     private final ScenarioContext scenarioContext;
 
@@ -21,13 +21,20 @@ public class AppHooks {
         this.scenarioContext = scenarioContext;
     }
 
+    public Scenario getScenario() {
+        return scenario;
+    }
+
     @Before(order = 0)
     public void launchBrowser(Scenario scenario) {
         ConfigReader configReader = new ConfigReader();
         configReader.initProp();
-        BrowserType browser = configReader.getBrowser();
-        DriverManager driverFactory = new DriverManager();
-        driver = driverFactory.initDriver(browser);
+        boolean isRest = scenario.getSourceTagNames().contains("@Rest");
+        if (!isRest) {
+            BrowserType browser = configReader.getBrowser();
+            DriverManager driverFactory = new DriverManager();
+            driver = driverFactory.initDriver(browser);
+        }
         this.scenario = scenario;
     }
 

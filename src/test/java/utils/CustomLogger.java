@@ -17,13 +17,13 @@ public class CustomLogger {
 
     public void logInfo(String message, Object... args) {
         String formatted = getTypeMessage(message, LogType.INFO, args);
-        appHooks.scenario.log(formatted);
+        appHooks.getScenario().log(formatted);
         printLog(formatted);
     }
 
     public void logStep(String message, Object... args) {
         String formatted = getStepMessage(message, args);
-        appHooks.scenario.log(formatted);
+        appHooks.getScenario().log(formatted);
         printLog(formatted);
     }
 
