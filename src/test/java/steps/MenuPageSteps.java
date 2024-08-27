@@ -23,11 +23,6 @@ public class MenuPageSteps {
     public void userSelectUrzadzeniaFromMenu() {
         logger.logStep("Selecting [Urządzenia] from menu.");
         menuPage.selectDevicesFromMenu();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Then("dropdown list with below items should be visible")
