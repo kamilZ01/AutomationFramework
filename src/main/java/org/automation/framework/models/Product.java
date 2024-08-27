@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import static org.automation.framework.utils.PriceParser.parsePrice;
 
 public class Product {
-    String name;
+    private String name;
     private BigDecimal startPrice;
     private BigDecimal monthlyPrice;
 
